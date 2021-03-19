@@ -1,4 +1,5 @@
 import React from "react";
+import MoneyLister from "./MoneyLister";
 
 declare global {
 	interface Window {
@@ -43,7 +44,10 @@ function App() {
 	return (
 		<div>
 			<h1>IL TUO ID E':{window.id || "Nessun ID"}</h1>
-			<h1>MONEY:{window.htmlentities.decode(window.money) || "Nessun ID"}</h1>
+			<h1>MONEY</h1>
+			<MoneyLister
+				money={window.htmlentities.decode(window.money).replaceAll("'", '"')}
+			/>
 		</div>
 	);
 }
