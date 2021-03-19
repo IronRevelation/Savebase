@@ -20,9 +20,13 @@ class User(UserMixin):
         if not user:
             return None
 
-        user = User(user['id'], [])
+        user = User(user['id'], user['money'])
         return user
 
     @staticmethod
     def create(id_):
-        users.insert_one({'id':id_})
+        users.insert_one({'id':id_, 'money':[]})
+
+    def add_money(self, m):
+        users.update_one({'id':self.id}, {'$push':{'money':m}})
+        self.money.append(m)

@@ -32,12 +32,13 @@ def get_google_provider_cfg():
 def load_user(user_id):
     return User.get(user_id)
 
-
+def test():
+    print("test")
 
 @app.route('/')
 def home():
     if current_user.is_authenticated:
-        return render_template('index.html', id=current_user.id)
+        return render_template('index.html', id=current_user.id, money=current_user.money)
     else:
         return render_template('login.html')
 
@@ -68,7 +69,7 @@ def callback():
     userinfo_response = requests.get(uri, headers=headers, data=body)
 
     if userinfo_response.json().get("email_verified"):
-        unique_id = userinfo_response.json()["sub"]     
+        unique_id = userinfo_response.json()["sub"]
     else:
         return "User email not available or not verified by Google.", 400
 
@@ -86,6 +87,7 @@ def callback():
 def logout():
     logout_user()
     return redirect('/')
+
 
 
 if __name__ == '__main__':
