@@ -1,5 +1,5 @@
 import json
-from flask import Flask, render_template, request, url_for, redirect
+from flask import Flask, render_template, request, url_for, redirect, jsonify
 from flask_login import (LoginManager, current_user, login_required, login_user, logout_user,)
 import os
 from dotenv import load_dotenv
@@ -7,6 +7,8 @@ from user import User
 
 from oauthlib.oauth2 import WebApplicationClient
 import requests
+
+
 
 app = Flask(__name__)
 app.secret_key = os.environ.get("SECRET_KEY") or os.urandom(24)
@@ -88,6 +90,32 @@ def logout():
     logout_user()
     return redirect('/')
 
+
+@app.route("/api/add_money/<int:m>", methods=["POST"])
+@login_required
+def add_money(m):
+    current_user.add_money(m)
+    return redirect('/') #????????????????????????
+
+
+@app.route("/api/get_money", methods=["GET"])
+@login_required
+def get_money():
+    return jsonify(current_user.money) #da testare
+
+
+@app.route("/api/remove_money<int:i>", methods=["POST"])
+@login_required
+def remove_money(i):
+    current_user.remove_entry(i)
+    return redirect('/') #da testare
+
+
+@app.route("/api/modify_money<int:i,int m>", methods=["POST"])
+@login_required
+def modify_money(i,m):
+    current_user.modify_entry(i,m)
+    return redirect('/') #da testare
 
 
 if __name__ == '__main__':

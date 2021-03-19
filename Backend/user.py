@@ -2,6 +2,8 @@ from flask_login import UserMixin
 from pymongo import MongoClient
 from dotenv import load_dotenv
 import os
+import datetime
+
 load_dotenv()
 
 mongo = MongoClient(os.environ.get("MONGO_URI"))
@@ -28,5 +30,14 @@ class User(UserMixin):
         users.insert_one({'id':id_, 'money':[]})
 
     def add_money(self, m):
-        users.update_one({'id':self.id}, {'$push':{'money':m}})
-        self.money.append(m)
+        entry = {"date":datetime.datetime.now().isoformat(), "value":m}
+        users.update_one({'id':self.id}, {'$push':{'money':entry}})
+        self.money.append(entry)
+
+    def remove_entry(self, i):
+        users.update_one({'id':self.id}, {'$pull':{"money":self.money[i]}})
+        del self.money[i]
+        
+    def modify_entry(self,i,m):
+        users.update_one({"id": self.id},{'$set':{"money.{}".format(i)+".value":m}})
+        self.money[i]["value"]=m
