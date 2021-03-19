@@ -1,5 +1,7 @@
 import json
 from flask import Flask, render_template, request, url_for, redirect, jsonify
+import flask
+from flask.helpers import flash
 from flask_login import (LoginManager, current_user, login_required, login_user, logout_user,)
 import os
 from dotenv import load_dotenv
@@ -40,10 +42,13 @@ def test():
 @app.route('/')
 def home():
     if current_user.is_authenticated:
-        return render_template('index.html', id=current_user.id, money=current_user.money)
+        return render_template('dashboard/index.html', id=current_user.id, money=current_user.money)
     else:
         return render_template('login.html')
 
+@app.route('/static/js/<path:path>')
+def serveStaticJS(path):
+	return flask.send_from_directory("templates/dashboard/static/js", path)
 
 @app.route("/login")
 def login():
@@ -111,7 +116,7 @@ def remove_money(i):
     return redirect('/') #da testare
 
 
-@app.route("/api/modify_money<int:i,int m>", methods=["POST"])
+@app.route("/api/modify_money<int:i>/<int:m>", methods=["POST"])
 @login_required
 def modify_money(i,m):
     current_user.modify_entry(i,m)
