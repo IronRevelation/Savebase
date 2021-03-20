@@ -123,14 +123,14 @@ def get_money():
     return jsonify(current_user.money) #da testare
 
 
-@app.route("/api/remove_money<int:i>", methods=["POST"])
+@app.route("/api/remove_money/<int:i>", methods=["POST"])
 @login_required
 def remove_money(i):
     current_user.remove_entry(i)
     return jsonify(current_user.money)
 
 
-@app.route("/api/modify_money<int:i>/<int:m>", methods=["POST"])
+@app.route("/api/modify_money/<int:i>/<float:m>", methods=["POST"])
 @login_required
 def modify_money(i,m):
     current_user.modify_entry(i,m)
