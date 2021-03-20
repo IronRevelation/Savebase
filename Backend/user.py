@@ -3,11 +3,18 @@ from pymongo import MongoClient
 from dotenv import load_dotenv
 import os
 import datetime
+import hashlib
 
 load_dotenv()
 
 mongo = MongoClient(os.environ.get("MONGO_URI"))
 users = mongo.Data.Users
+
+
+def hash_string(s):
+    s = str(s)
+    s = s.encode()
+    return hashlib.sha256(s).hexdigest()
 
 
 class User(UserMixin):
@@ -18,6 +25,7 @@ class User(UserMixin):
     
     @staticmethod
     def get(user_id):
+        user_id = hash_string(user_id)
         user = users.find_one({'id':user_id})
         if not user:
             return None
@@ -27,6 +35,7 @@ class User(UserMixin):
 
     @staticmethod
     def create(id_):
+        id_ = hash_string(id_)
         users.insert_one({'id':id_, 'money':[]})
 
     def add_money(self, m):

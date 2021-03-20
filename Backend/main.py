@@ -71,7 +71,7 @@ def login():
     request_uri = client.prepare_request_uri(
         authorization_endpoint,
         redirect_uri=request.base_url + "/callback",
-        scope=["openid", "email", "profile"],
+        scope=["openid"],
     )
     return redirect(request_uri)
 
@@ -89,10 +89,7 @@ def callback():
     uri, headers, body = client.add_token(userinfo_endpoint)
     userinfo_response = requests.get(uri, headers=headers, data=body)
 
-    if userinfo_response.json().get("email_verified"):
-        unique_id = userinfo_response.json()["sub"]
-    else:
-        return "User email not available or not verified by Google.", 400
+    unique_id = userinfo_response.json()["sub"]
 
     my_user = User(id_=unique_id, money_=[])
 
