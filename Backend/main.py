@@ -30,6 +30,11 @@ def get_google_provider_cfg():
     return requests.get(GOOGLE_DISCOVERY_URL).json()
 
 
+@login_manager.unauthorized_handler
+def unauthorized():
+    return redirect('/')
+
+
 @login_manager.user_loader
 def load_user(user_id):
     return User.get(user_id)
@@ -45,11 +50,10 @@ def home():
         return render_template('login/index.html')
 
 @app.route('/dashboard')
+@login_required
 def dashboard():
-	if current_user.is_authenticated:
-		return render_template("dashboard/index.html", id=current_user.id, money=current_user.money)
-	else:
-		return redirect("/")
+	return render_template("dashboard/index.html", id=current_user.id, money=current_user.money)
+
 
 @app.route('/static/js/<path:path>')
 def serveStaticJS(path):
