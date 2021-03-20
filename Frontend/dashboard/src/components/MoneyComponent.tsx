@@ -31,12 +31,20 @@ const MoneyComponent: React.FC<{
 					<td style={tableStyles}>{props.value}</td>
 					<td>
 						<button
-							onClick={() =>
+							onClick={() => {
+								const numInput = parseFloat(
+									prompt("Insert the new quantity:") ?? ""
+								);
 								props.updateSingleElem(
 									props.index,
-									String(Number(prompt("Insert the new quantity:")))
-								)
-							}
+									numInput.toFixed(
+										Math.max(
+											2,
+											(numInput.toString().split(".")[1] || []).length
+										)
+									)
+								);
+							}}
 						>
 							<PencilFill /> Edit value
 						</button>

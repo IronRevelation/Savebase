@@ -12,9 +12,14 @@ const MoneyManager: React.FC<{ money: string }> = (props) => {
 			<AddButton
 				addFn={() => {
 					fetch(
-						`/add_money/${String(
-							Number(prompt("Insert the quantity to add:"))
-						)}`,
+						`/api/add_money/${(() => {
+							const numInput = parseFloat(
+								prompt("Insert the new quantity:") ?? ""
+							);
+							return numInput.toFixed(
+								Math.max(2, (numInput.toString().split(".")[1] || []).length)
+							);
+						})()}`,
 						{ method: "POST" }
 					).then(() => {
 						window.location.href = "/dashboard";
