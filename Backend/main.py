@@ -110,7 +110,7 @@ def logout():
 @login_required
 def add_money(m):
     current_user.add_money(m)
-    return redirect('/') #????????????????????????
+    return jsonify(current_user.money)
 
 
 @app.route("/api/get_money", methods=["GET"])
@@ -123,14 +123,14 @@ def get_money():
 @login_required
 def remove_money(i):
     current_user.remove_entry(i)
-    return redirect('/') #da testare
+    return jsonify(current_user.money)
 
 
 @app.route("/api/modify_money<int:i>/<int:m>", methods=["POST"])
 @login_required
 def modify_money(i,m):
     current_user.modify_entry(i,m)
-    return redirect('/') #da testare
+    return jsonify(current_user.money)
 
 
 if __name__ == '__main__':
