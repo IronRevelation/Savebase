@@ -1,5 +1,5 @@
 import React from "react";
-import MoneyLister from "./MoneyLister";
+import MoneyManager from "./MoneyManager";
 
 declare global {
 	interface Window {
@@ -40,12 +40,22 @@ window.htmlentities = {
 	},
 };
 
+if (window.id === "{{id}}" && window.money === "{{money}}") {
+	window.id = "12345678";
+	window.money = JSON.stringify([
+		{
+			date: new Date().toISOString(),
+			value: 3.14,
+		},
+	]);
+}
+
 function App() {
 	return (
 		<div>
 			<h1>IL TUO ID E':{window.id || "Nessun ID"}</h1>
 			<h1>MONEY</h1>
-			<MoneyLister
+			<MoneyManager
 				money={window.htmlentities.decode(window.money).replaceAll("'", '"')}
 			/>
 		</div>
