@@ -110,7 +110,7 @@ def logout():
     return redirect('/')
 
 
-@app.route("/api/add_money/<int:m>", methods=["POST"])
+@app.route("/api/add_money/<float:m>", methods=["POST"])
 @login_required
 def add_money(m):
     current_user.add_money(m)

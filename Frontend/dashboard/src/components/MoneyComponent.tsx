@@ -34,7 +34,7 @@ const MoneyComponent: React.FC<{
 							onClick={() =>
 								props.updateSingleElem(
 									props.index,
-									Number(prompt("Inserisci il valore nuovo:") ?? "").toFixed(2)
+									String(Number(prompt("Insert the new quantity:")))
 								)
 							}
 						>

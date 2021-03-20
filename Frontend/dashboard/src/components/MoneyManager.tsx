@@ -1,5 +1,6 @@
 import React from "react";
 import MoneyComponent from "./MoneyComponent";
+import AddButton from "./AddButton";
 
 const MoneyManager: React.FC<{ money: string }> = (props) => {
 	const moneyArray = JSON.parse(props.money) as {
@@ -8,6 +9,18 @@ const MoneyManager: React.FC<{ money: string }> = (props) => {
 	}[];
 	return (
 		<div>
+			<AddButton
+				addFn={() => {
+					fetch(
+						`/add_money/${String(
+							Number(prompt("Insert the quantity to add:"))
+						)}`,
+						{ method: "POST" }
+					).then(() => {
+						window.location.href = "/dashboard";
+					});
+				}}
+			/>
 			{moneyArray.map((v, i) => (
 				<MoneyComponent
 					updateSingleElem={(index, newVal) => {
