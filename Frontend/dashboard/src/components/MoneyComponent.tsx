@@ -5,7 +5,7 @@ const MoneyComponent: React.FC<{
 	date: string;
 	value: number;
 	index: number;
-	updateSingleElem: (i: number, val: number) => void;
+	updateSingleElem: (i: number, val: string) => void;
 	deleteElem: (i: number) => void;
 }> = (props) => {
 	const date = new Date(props.date);
@@ -34,7 +34,7 @@ const MoneyComponent: React.FC<{
 							onClick={() =>
 								props.updateSingleElem(
 									props.index,
-									parseInt(prompt("Inserisci il valore nuovo:") ?? "")
+									Number(prompt("Inserisci il valore nuovo:") ?? "").toFixed(2)
 								)
 							}
 						>

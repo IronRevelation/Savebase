@@ -11,12 +11,12 @@ const MoneyManager: React.FC<{ money: string }> = (props) => {
 			{moneyArray.map((v, i) => (
 				<MoneyComponent
 					updateSingleElem={(index, newVal) => {
-						fetch(`/api/modify_money${index}/${newVal}`, {
+						fetch(`/api/modify_money/${index}/${newVal}`, {
 							method: "POST",
 						}).then(() => (window.location.href = "/dashboard"));
 					}}
 					deleteElem={(index) => {
-						fetch(`/api/remove_money${index}`, {
+						fetch(`/api/remove_money/${index}`, {
 							method: "POST",
 						}).then(() => (window.location.href = "/dashboard"));
 					}}
