@@ -1,11 +1,27 @@
 import React from "react";
-import { Plus } from "react-bootstrap-icons";
+import { Add } from "@material-ui/icons";
+import { Button, withStyles } from "@material-ui/core";
 
-const AddButton: React.FC<{ addFn: () => void }> = (props) => {
+const ThemedButton = withStyles({
+	root: {
+		backgroundColor: "#009fb7",
+		color: "#272727",
+	},
+})(Button);
+
+const AddButton: React.FC<{ onClick: () => void; disabled?: boolean }> = (
+	props
+) => {
 	return (
-		<button onClick={() => props.addFn()}>
-			<Plus /> Add value
-		</button>
+		<ThemedButton
+			variant="contained"
+			startIcon={<Add />}
+			disableElevation
+			onClick={props.onClick}
+			disabled={props.disabled}
+		>
+			Add value
+		</ThemedButton>
 	);
 };
 

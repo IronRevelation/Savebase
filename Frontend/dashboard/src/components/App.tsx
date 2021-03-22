@@ -1,9 +1,8 @@
-import React from "react";
-import MoneyManager from "./MoneyManager";
+import React, { useState } from "react";
+import MoneyManager, { MoneyArray } from "./MoneyManager";
 
 declare global {
 	interface Window {
-		id: string;
 		money: string;
 		htmlentities: {
 			encode: (a: string) => string;
@@ -40,8 +39,7 @@ window.htmlentities = {
 	},
 };
 
-if (window.id === "{{id}}" && window.money === "{{money}}") {
-	window.id = "12345678";
+if (window.money === "{{money}}") {
 	window.money = JSON.stringify([
 		{
 			date: new Date().toISOString(),
@@ -50,14 +48,16 @@ if (window.id === "{{id}}" && window.money === "{{money}}") {
 	]);
 }
 
+const defaultMoney = JSON.parse(
+	window.htmlentities.decode(window.money).replaceAll("'", '"')
+) as MoneyArray;
+
 function App() {
+	const [money, setMoney] = useState(defaultMoney);
 	return (
 		<div>
-			<h1>IL TUO ID E':{window.id || "Nessun ID"}</h1>
-			<h1>MONEY</h1>
-			<MoneyManager
-				money={window.htmlentities.decode(window.money).replaceAll("'", '"')}
-			/>
+			<h1>SaveBase</h1>
+			<MoneyManager money={money} updateMoney={(newMon) => setMoney(newMon)} />
 		</div>
 	);
 }

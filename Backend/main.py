@@ -52,7 +52,7 @@ def home():
 @app.route('/dashboard')
 @login_required
 def dashboard():
-	return render_template("dashboard/index.html", id=current_user.id, money=current_user.money)
+	return render_template("dashboard/index.html", money=current_user.money)
 
 
 @app.route('/static/js/<path:path>')
