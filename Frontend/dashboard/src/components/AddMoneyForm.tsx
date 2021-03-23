@@ -15,6 +15,7 @@ const ThemedTextField = withStyles({
 				borderColor: "#009FB7",
 			},
 		},
+		color: "#272727",
 	},
 })(TextField);
 

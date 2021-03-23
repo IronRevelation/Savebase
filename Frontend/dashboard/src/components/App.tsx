@@ -43,7 +43,19 @@ if (window.money === "{{money}}") {
 	window.money = JSON.stringify([
 		{
 			date: new Date().toISOString(),
+			value: 1.14,
+		},
+		{
+			date: new Date().toISOString(),
+			value: 2.14,
+		},
+		{
+			date: new Date().toISOString(),
 			value: 3.14,
+		},
+		{
+			date: new Date().toISOString(),
+			value: 4.14,
 		},
 	]);
 }

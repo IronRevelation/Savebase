@@ -2,6 +2,7 @@ import React, { useState } from "react";
 // import MoneyComponent from "./MoneyComponent";
 import AddMoneyForm from "./AddMoneyForm";
 import { ErrSnackbar, SuccessSnackbar } from "./MySnackbars";
+import MoneyList from "./MoneyList";
 
 export type MoneyArray = { date: string; value: number }[];
 
@@ -67,6 +68,7 @@ const MoneyManager: React.FC<{
 				}}
 				disabled={disabledForms}
 			/>
+			<MoneyList money={props.money} />
 		</div>
 	);
 };
