@@ -134,7 +134,7 @@ def modify_money(i,m):
     return jsonify(current_user.money)
 
 
-@app.route("/api/update_currency/<char:c>", methods=["POST"])
+@app.route("/api/update_currency/<string:c>", methods=["POST"])
 @login_required
 def update_currency(c):
     current_user.update_currency(c)

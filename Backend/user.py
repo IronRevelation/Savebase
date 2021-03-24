@@ -53,4 +53,4 @@ class User(UserMixin):
 
     def update_currency(self, c):
         users.update_one({"id": self.id},{'$set':{"currency":c}})
-        self.currency=c;
+        self.currency=c
