@@ -39,8 +39,6 @@ def unauthorized():
 def load_user(user_id):
     return User.get(user_id)
 
-def test():
-    print("test")
 
 @app.route('/')
 def home():
@@ -48,6 +46,7 @@ def home():
         return redirect("/dashboard")
     else:
         return render_template('login/index.html')
+
 
 @app.route('/dashboard')
 @login_required
@@ -58,6 +57,7 @@ def dashboard():
 @app.route('/static/js/<path:path>')
 def serveStaticJS(path):
 	return send_from_directory("templates/login/static/js", path)
+
 
 @app.route("/dashboard/static/js/<path:path>")
 def serveStaticDashboardJS(path):
@@ -91,7 +91,7 @@ def callback():
 
     unique_id = userinfo_response.json()["sub"]
 
-    my_user = User(id_=unique_id, money_=[])
+    my_user = User(id_=unique_id, money_=[], currency_="€")
 
     if not User.get(unique_id):
         User.create(unique_id)
@@ -117,7 +117,7 @@ def add_money(m):
 @app.route("/api/get_money", methods=["GET"])
 @login_required
 def get_money():
-    return jsonify(current_user.money) #da testare
+    return jsonify(current_user.money)
 
 
 @app.route("/api/remove_money/<int:i>", methods=["POST"])
@@ -133,6 +133,18 @@ def modify_money(i,m):
     current_user.modify_entry(i,m)
     return jsonify(current_user.money)
 
+
+@app.route("/api/update_currency/<char:c>", methods=["POST"])
+@login_required
+def update_currency(c):
+    current_user.update_currency(c)
+    return jsonify(current_user.currency)
+    
+
+@app.route("/api/get_currency", methods=["GET"])
+@login_required
+def get_currency():
+    return jsonify(current_user.currency)
 
 if __name__ == '__main__':
     app.run(ssl_context="adhoc")
