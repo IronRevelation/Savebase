@@ -4,8 +4,9 @@ import MoneyComponent from "./MoneyComponent";
 
 const MoneyList: React.FC<{
 	money: MoneyArray;
-	editMoney: (index: number, newVal: number) => void;
 	disabledEdit?: boolean;
+	editMoney: (index: number, newVal: number) => void;
+	deleteMoney: (index: number) => void;
 }> = (props) => {
 	return (
 		<div style={{ marginTop: "2rem", display: "inline-block" }}>
@@ -17,8 +18,9 @@ const MoneyList: React.FC<{
 						moneyVal={moneyObj.value}
 						index={index}
 						key={index}
-						onEdit={props.editMoney}
 						disabledEdit={props.disabledEdit}
+						onEdit={props.editMoney}
+						onDelete={props.deleteMoney}
 					/>
 				);
 			})}

@@ -51,7 +51,7 @@ def home():
 @app.route('/dashboard')
 @login_required
 def dashboard():
-	return render_template("dashboard/index.html", money=current_user.money)
+	return render_template("dashboard/index.html", money=current_user.money, quota=current_user.quota, currency=current_user.currency)
 
 
 @app.route('/static/js/<path:path>')
@@ -147,7 +147,7 @@ def get_currency():
     return jsonify(current_user.currency)
 
 
-@app.route("/api/update_quota/<int:q>", methods=["POST"])
+@app.route("/api/update_quota/<float:q>", methods=["POST"])
 @login_required
 def update_quota(q):
     current_user.update_quota(q)

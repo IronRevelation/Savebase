@@ -38,6 +38,15 @@ const editMoney = async (
 	}
 };
 
+const deleteMoney = async (index: number) => {
+	const res = await fetch(`/api/remove_money/${index}`, { method: "POST" });
+	if (!res.ok) {
+		throw new Error("RESPONSESTATUSNOTOK");
+	} else {
+		return res.json() as Promise<MoneyArray>;
+	}
+};
+
 const MoneyManager: React.FC<{
 	money: MoneyArray;
 	updateMoney: (newMoney: MoneyArray) => void;
@@ -110,6 +119,25 @@ const MoneyManager: React.FC<{
 						)
 						.finally(() => setDisabledEditForms(false));
 				}}
+				deleteMoney={(i) =>
+					deleteMoney(i)
+						.then((newMoney) => {
+							props.updateMoney(newMoney);
+							setOpenSuccessSnackbar({
+								open: true,
+								message: "YAY! Value deleted succesfully!",
+							});
+						})
+						.catch((e) =>
+							setOpenErrSnackbar({
+								open: true,
+								message:
+									e.message === "RESPONSESTATUSNOTOK"
+										? "You tried to delete a problematic value!"
+										: "There's a network problem! Try refreshing the page.",
+							})
+						)
+				}
 			/>
 		</div>
 	);

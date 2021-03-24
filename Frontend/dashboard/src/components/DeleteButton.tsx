@@ -10,12 +10,17 @@ const ThemedButton = withStyles({
 	},
 })(Button);
 
-function DeleteButton() {
+const DeleteButton: React.FC<{ onClick: () => void }> = (props) => {
 	return (
-		<ThemedButton disableElevation size="small" startIcon={<Delete />}>
+		<ThemedButton
+			disableElevation
+			size="small"
+			startIcon={<Delete />}
+			onClick={() => props.onClick()}
+		>
 			Delete
 		</ThemedButton>
 	);
-}
+};
 
 export default DeleteButton;

@@ -4,6 +4,8 @@ import MoneyManager, { MoneyArray } from "./MoneyManager";
 declare global {
 	interface Window {
 		money: string;
+		quota: string;
+		currency: string;
 		htmlentities: {
 			encode: (a: string) => string;
 			decode: (a: string) => string;
@@ -58,6 +60,8 @@ if (window.money === "{{money}}") {
 			value: 4.14,
 		},
 	]);
+	window.quota = "123.456";
+	window.currency = "€";
 }
 
 const defaultMoney = JSON.parse(
