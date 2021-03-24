@@ -91,7 +91,7 @@ def callback():
 
     unique_id = userinfo_response.json()["sub"]
 
-    my_user = User(id_=unique_id, money_=[], currency_="€")
+    my_user = User(id_=unique_id, money_=[], currency_="€", quota_ = 0)
 
     if not User.get(unique_id):
         User.create(unique_id)
@@ -145,6 +145,20 @@ def update_currency(c):
 @login_required
 def get_currency():
     return jsonify(current_user.currency)
+
+
+@app.route("/api/update_quota/<int:q>", methods=["POST"])
+@login_required
+def update_quota(q):
+    current_user.update_quota(q)
+    return jsonify(current_user.quota)
+    
+
+@app.route("/api/get_quota", methods=["GET"])
+@login_required
+def get_quota():
+    return jsonify(current_user.quota)
+
 
 if __name__ == '__main__':
     app.run(ssl_context="adhoc")

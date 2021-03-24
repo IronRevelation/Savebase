@@ -18,10 +18,11 @@ def hash_string(s):
 
 
 class User(UserMixin):
-    def __init__(self, id_, money_, currency_):
+    def __init__(self, id_, money_, currency_, quota_):
         self.id = id_
         self.money = money_
         self.currency=currency_
+        self.quota=quota_
     
     @staticmethod
     def get(user_id):
@@ -30,13 +31,15 @@ class User(UserMixin):
         if not user:
             return None
 
-        user = User(user['id'], user['money'], user['currency'])
+        user = User(user['id'], user['money'], user['currency'], user['quota'])
         return user
+
 
     @staticmethod
     def create(id_):
         id_ = hash_string(id_)
-        users.insert_one({'id':id_, 'money':[], 'currency':"€"})
+        users.insert_one({'id':id_, 'money':[], 'currency':"€", 'quota':0})
+
 
     def add_money(self, m):
         entry = {"date":datetime.datetime.now().isoformat(), "value":m}
@@ -54,3 +57,7 @@ class User(UserMixin):
     def update_currency(self, c):
         users.update_one({"id": self.id},{'$set':{"currency":c}})
         self.currency=c
+
+    def update_quota(self, q):
+        users.update_one({"id": self.id},{'$set':{"quota":q}})
+        self.quota=q
