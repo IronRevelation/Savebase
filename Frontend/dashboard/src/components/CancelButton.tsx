@@ -1,30 +1,30 @@
 import React from "react";
-import { Edit } from "@material-ui/icons";
+import { Close } from "@material-ui/icons";
 import { Button, withStyles } from "@material-ui/core";
 
 const ThemedButton = withStyles({
 	root: {
-		backgroundColor: "#009FB7",
+		backgroundColor: "#e26d5a",
 		color: "#272727",
-		marginRight: "0.25rem",
+		marginLeft: ".25rem",
 	},
 })(Button);
 
-const EditButton: React.FC<{ onClick: () => void; disabled?: boolean }> = (
+const CancelButton: React.FC<{ onClick: () => void; disabled?: boolean }> = (
 	props
 ) => {
 	return (
 		<ThemedButton
 			disableElevation
 			variant="contained"
-			size="small"
 			onClick={props.onClick}
 			disabled={props.disabled}
-			startIcon={<Edit />}
+			startIcon={<Close />}
+			size="small"
 		>
-			Edit
+			Cancel
 		</ThemedButton>
 	);
 };
 
-export default EditButton;
+export default CancelButton;

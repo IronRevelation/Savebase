@@ -21,11 +21,29 @@ const addMoney = async (val: number): Promise<MoneyArray> => {
 	}
 };
 
+const editMoney = async (
+	index: number,
+	newVal: number
+): Promise<MoneyArray> => {
+	const res = await fetch(
+		`/api/modify_money/${index}/${atLeastTwoDigitsRequired(newVal)}`,
+		{
+			method: "POST",
+		}
+	);
+	if (!res.ok) {
+		throw new Error("RESPONSESTATUSNOTOK");
+	} else {
+		return res.json() as Promise<MoneyArray>;
+	}
+};
+
 const MoneyManager: React.FC<{
 	money: MoneyArray;
 	updateMoney: (newMoney: MoneyArray) => void;
 }> = (props) => {
-	const [disabledForms, setDisabledForms] = useState(false);
+	const [disabledAddForms, setDisabledAddForms] = useState(false);
+	const [disabledEditForms, setDisabledEditForms] = useState(false);
 	const [openErrSnackbar, setOpenErrSnackbar] = useState({
 		open: false,
 		message: "",
@@ -46,13 +64,13 @@ const MoneyManager: React.FC<{
 			/>
 			<AddMoneyForm
 				onClick={(validValToAdd) => {
-					setDisabledForms(true);
+					setDisabledAddForms(true);
 					addMoney(validValToAdd)
 						.then((newMoney) => {
 							props.updateMoney(newMoney);
 							setOpenSuccessSnackbar({
 								open: true,
-								message: "YAY! Nothing went wrong!",
+								message: "YAY! Value added succesfully!",
 							});
 						})
 						.catch((e) =>
@@ -60,15 +78,39 @@ const MoneyManager: React.FC<{
 								open: true,
 								message:
 									e.message === "RESPONSESTATUSNOTOK"
-										? "You sent an invalid value"
+										? "You sent an invalid value!"
 										: "There's a network problem! Try refreshing the page.",
 							})
 						)
-						.finally(() => setDisabledForms(false));
+						.finally(() => setDisabledAddForms(false));
 				}}
-				disabled={disabledForms}
+				disabled={disabledAddForms}
 			/>
-			<MoneyList money={props.money} />
+			<MoneyList
+				money={props.money}
+				disabledEdit={disabledEditForms}
+				editMoney={(index, newVal) => {
+					setDisabledEditForms(true);
+					editMoney(index, newVal)
+						.then((newMoney) => {
+							props.updateMoney(newMoney);
+							setOpenSuccessSnackbar({
+								open: true,
+								message: "YAY! Value modified succesfully!",
+							});
+						})
+						.catch((e) =>
+							setOpenErrSnackbar({
+								open: true,
+								message:
+									e.message === "RESPONSESTATUSNOTOK"
+										? "You sent an invalid value!"
+										: "There's a network problem! Try refreshing the page.",
+							})
+						)
+						.finally(() => setDisabledEditForms(false));
+				}}
+			/>
 		</div>
 	);
 };

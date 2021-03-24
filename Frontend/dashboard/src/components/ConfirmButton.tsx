@@ -1,30 +1,30 @@
 import React from "react";
-import { Edit } from "@material-ui/icons";
+import { Check } from "@material-ui/icons";
 import { Button, withStyles } from "@material-ui/core";
 
 const ThemedButton = withStyles({
 	root: {
-		backgroundColor: "#009FB7",
+		backgroundColor: "#009fb7",
 		color: "#272727",
 		marginRight: "0.25rem",
 	},
 })(Button);
 
-const EditButton: React.FC<{ onClick: () => void; disabled?: boolean }> = (
+const ConfirmButton: React.FC<{ onClick: () => void; disabled?: boolean }> = (
 	props
 ) => {
 	return (
 		<ThemedButton
-			disableElevation
 			variant="contained"
+			startIcon={<Check />}
+			disableElevation
 			size="small"
 			onClick={props.onClick}
 			disabled={props.disabled}
-			startIcon={<Edit />}
 		>
-			Edit
+			Confirm
 		</ThemedButton>
 	);
 };
 
-export default EditButton;
+export default ConfirmButton;
