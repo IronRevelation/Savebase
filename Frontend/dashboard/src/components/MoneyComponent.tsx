@@ -25,6 +25,7 @@ const MoneyComponent: React.FC<{
 	moneyVal: number;
 	index: number;
 	disabledEdit?: boolean;
+	currency: string;
 	onEdit: (index: number, newVal: number) => void;
 	onDelete: (index: number) => void;
 }> = (props) => {
@@ -47,7 +48,9 @@ const MoneyComponent: React.FC<{
 				/>
 			) : (
 				<>
-					<div className={style.value}>{props.moneyVal}</div>
+					<div className={style.value}>
+						{props.moneyVal + "" + props.currency}
+					</div>
 					<EditButton onClick={() => setIsBeingEdited(true)} />
 					<DeleteButton onClick={() => props.onDelete(props.index)} />
 				</>

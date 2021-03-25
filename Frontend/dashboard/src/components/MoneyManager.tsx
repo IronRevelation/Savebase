@@ -33,22 +33,21 @@ const editMoney = async (
 	);
 	if (!res.ok) {
 		throw new Error("RESPONSESTATUSNOTOK");
-	} else {
-		return res.json() as Promise<MoneyArray>;
 	}
+	return res.json() as Promise<MoneyArray>;
 };
 
 const deleteMoney = async (index: number) => {
 	const res = await fetch(`/api/remove_money/${index}`, { method: "POST" });
 	if (!res.ok) {
 		throw new Error("RESPONSESTATUSNOTOK");
-	} else {
-		return res.json() as Promise<MoneyArray>;
 	}
+	return res.json() as Promise<MoneyArray>;
 };
 
 const MoneyManager: React.FC<{
 	money: MoneyArray;
+	currency: string;
 	updateMoney: (newMoney: MoneyArray) => void;
 }> = (props) => {
 	const [disabledAddForms, setDisabledAddForms] = useState(false);
@@ -62,7 +61,7 @@ const MoneyManager: React.FC<{
 		message: "",
 	});
 	return (
-		<div>
+		<div style={{ marginTop: "2rem" }}>
 			<ErrSnackbar
 				openCfg={openErrSnackbar}
 				onClose={() => setOpenErrSnackbar({ open: false, message: "" })}
@@ -98,6 +97,7 @@ const MoneyManager: React.FC<{
 			<MoneyList
 				money={props.money}
 				disabledEdit={disabledEditForms}
+				currency={props.currency}
 				editMoney={(index, newVal) => {
 					setDisabledEditForms(true);
 					editMoney(index, newVal)

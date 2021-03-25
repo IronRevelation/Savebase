@@ -6,7 +6,6 @@ const ThemedButton = withStyles({
 	root: {
 		backgroundColor: "#e26d5a",
 		color: "#272727",
-		marginLeft: "0.25rem",
 	},
 })(Button);
 

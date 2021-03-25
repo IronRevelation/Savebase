@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import MoneyManager, { MoneyArray } from "./MoneyManager";
+import UserSettings from "./UserSettings";
 
 declare global {
 	interface Window {
@@ -61,7 +62,7 @@ if (window.money === "{{money}}") {
 		},
 	]);
 	window.quota = "123.456";
-	window.currency = "€";
+	window.currency = "$";
 }
 
 const defaultMoney = JSON.parse(
@@ -70,10 +71,20 @@ const defaultMoney = JSON.parse(
 
 function App() {
 	const [money, setMoney] = useState(defaultMoney);
+	const [currency, setCurrency] = useState(window.currency);
 	return (
 		<div>
 			<h1>SaveBase</h1>
-			<MoneyManager money={money} updateMoney={(newMon) => setMoney(newMon)} />
+			<UserSettings
+				currency={currency}
+				quota={parseFloat(window.quota)}
+				updateCurrency={(newCurrency) => setCurrency(newCurrency)}
+			/>
+			<MoneyManager
+				currency={currency}
+				money={money}
+				updateMoney={(newMon) => setMoney(newMon)}
+			/>
 		</div>
 	);
 }
