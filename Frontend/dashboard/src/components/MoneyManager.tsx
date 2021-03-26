@@ -62,6 +62,7 @@ const MoneyManager: React.FC<{
 	});
 	return (
 		<div style={{ marginTop: "2rem" }}>
+			<h3>Your money:</h3>
 			<ErrSnackbar
 				openCfg={openErrSnackbar}
 				onClose={() => setOpenErrSnackbar({ open: false, message: "" })}

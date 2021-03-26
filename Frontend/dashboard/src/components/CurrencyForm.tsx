@@ -33,7 +33,7 @@ const CurrencyForm: React.FC<{
 	const [customCurrency, setCustomCurrency] = useState("");
 
 	return (
-		<div>
+		<div style={{ marginTop: "2rem" }}>
 			<h3>Currency:</h3>
 			{selectedValue === "custom" ? (
 				<ThemedTextField

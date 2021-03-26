@@ -8,8 +8,8 @@ const useStyles = makeStyles({
 	moneyObjCard: {
 		backgroundColor: "#EFF1F3",
 		borderColor: "#696773",
-		padding: "0.5rem",
-		marginBottom: "0.5rem",
+		padding: "1rem",
+		marginBottom: "1.5rem",
 	},
 	date: {
 		fontSize: 12,

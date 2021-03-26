@@ -1,6 +1,9 @@
 import React, { useState } from "react";
 import MoneyManager, { MoneyArray } from "./MoneyManager";
 import UserSettings from "./UserSettings";
+import ScreenWrapper from "./ScreenWrapper";
+import LeftHalfOfScreenWrapper from "./LeftHalfOfScreenWrapper";
+import RightHalfOfScreenWrapper from "./RightHalfOfScreenWrapper";
 
 declare global {
 	interface Window {
@@ -62,7 +65,7 @@ if (window.money === "{{money}}") {
 		},
 	]);
 	window.quota = "123.456";
-	window.currency = "$";
+	window.currency = "0";
 }
 
 const defaultMoney = JSON.parse(
@@ -72,19 +75,28 @@ const defaultMoney = JSON.parse(
 function App() {
 	const [money, setMoney] = useState(defaultMoney);
 	const [currency, setCurrency] = useState(window.currency);
+	const [quota, setQuota] = useState(parseFloat(window.quota));
 	return (
 		<div>
 			<h1>SaveBase</h1>
-			<UserSettings
-				currency={currency}
-				quota={parseFloat(window.quota)}
-				updateCurrency={(newCurrency) => setCurrency(newCurrency)}
-			/>
-			<MoneyManager
-				currency={currency}
-				money={money}
-				updateMoney={(newMon) => setMoney(newMon)}
-			/>
+			<ScreenWrapper>
+				<LeftHalfOfScreenWrapper>
+					<UserSettings
+						currency={currency}
+						quota={quota}
+						updateQuota={(newQuota) => setQuota(newQuota)}
+						updateCurrency={(newCurrency) => setCurrency(newCurrency)}
+					/>
+					<MoneyManager
+						currency={currency}
+						money={money}
+						updateMoney={(newMon) => setMoney(newMon)}
+					/>
+				</LeftHalfOfScreenWrapper>
+				<RightHalfOfScreenWrapper>
+					<h1>CIAUUUU</h1>
+				</RightHalfOfScreenWrapper>
+			</ScreenWrapper>
 		</div>
 	);
 }
