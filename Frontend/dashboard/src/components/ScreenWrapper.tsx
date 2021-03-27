@@ -7,6 +7,7 @@ const ScreenWrapper: React.FC<{}> = (props) => {
 				display: "flex",
 				flexDirection: "row-reverse",
 				flexWrap: "wrap",
+				justifyContent: "flex-end",
 			}}
 		>
 			{props.children}

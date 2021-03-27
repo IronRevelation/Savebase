@@ -4,6 +4,7 @@ import UserSettings from "./UserSettings";
 import ScreenWrapper from "./ScreenWrapper";
 import LeftHalfOfScreenWrapper from "./LeftHalfOfScreenWrapper";
 import RightHalfOfScreenWrapper from "./RightHalfOfScreenWrapper";
+import MoneyChart from "./MoneyChart";
 
 declare global {
 	interface Window {
@@ -48,24 +49,24 @@ window.htmlentities = {
 if (window.money === "{{money}}") {
 	window.money = JSON.stringify([
 		{
-			date: new Date().toISOString(),
-			value: 1.14,
+			date: new Date("1, March 2021").toISOString(),
+			value: 1,
 		},
 		{
-			date: new Date().toISOString(),
-			value: 2.14,
+			date: new Date("2, June 2021").toISOString(),
+			value: 2,
 		},
 		{
-			date: new Date().toISOString(),
-			value: 3.14,
+			date: new Date("27, January 2022").toISOString(),
+			value: 3,
 		},
 		{
-			date: new Date().toISOString(),
-			value: 4.14,
+			date: new Date("25, December 2023").toISOString(),
+			value: 4,
 		},
 	]);
 	window.quota = "123.456";
-	window.currency = "0";
+	window.currency = "€";
 }
 
 const defaultMoney = JSON.parse(
@@ -94,7 +95,7 @@ function App() {
 					/>
 				</LeftHalfOfScreenWrapper>
 				<RightHalfOfScreenWrapper>
-					<h1>CIAUUUU</h1>
+					<MoneyChart money={money} />
 				</RightHalfOfScreenWrapper>
 			</ScreenWrapper>
 		</div>

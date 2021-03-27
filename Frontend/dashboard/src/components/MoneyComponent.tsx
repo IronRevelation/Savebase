@@ -32,7 +32,11 @@ const MoneyComponent: React.FC<{
 	const style = useStyles();
 	const [isBeingEdited, setIsBeingEdited] = useState(false);
 	return (
-		<Card className={style.moneyObjCard} variant="outlined">
+		<Card
+			id={`registered-money-${props.index}`}
+			className={style.moneyObjCard}
+			variant="outlined"
+		>
 			<div className={style.date}>
 				{props.dateObj.getFullYear()}-{props.dateObj.getMonth() + 1}-
 				{props.dateObj.getDate()}
