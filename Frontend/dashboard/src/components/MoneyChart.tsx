@@ -1,22 +1,9 @@
 import React from "react";
-import { MoneyArray } from "./MoneyManager";
 import { VictoryLine, VictoryChart, VictoryAxis, VictoryTheme } from "victory";
 
-function accumulationOfMoney(
-	money: MoneyArray
-): { value: number; date: number }[] {
-	let sum = 0;
-	const newMoney: { value: number; date: number }[] = [];
-	for (let i = 0; i < money.length; i++) {
-		sum += money[i].value;
-		newMoney[i] = { date: NaN, value: NaN };
-		newMoney[i].value = sum;
-		newMoney[i].date = new Date(money[i].date).getTime();
-	}
-	return newMoney;
-}
-
-const MoneyChart: React.FC<{ money: MoneyArray }> = (props) => {
+const MoneyChart: React.FC<{ money: { value: number; date: number }[] }> = (
+	props
+) => {
 	return (
 		<div style={{ maxWidth: "40rem" }}>
 			<VictoryChart theme={VictoryTheme.material}>
@@ -29,14 +16,7 @@ const MoneyChart: React.FC<{ money: MoneyArray }> = (props) => {
 					}}
 				/>
 				<VictoryAxis dependentAxis tickFormat={(a) => a} />
-				<VictoryLine
-					data={accumulationOfMoney(props.money).map((cur) => ({
-						date: new Date(cur.date).getTime(),
-						value: cur.value,
-					}))}
-					x="date"
-					y="value"
-				/>
+				<VictoryLine data={props.money} x="date" y="value" />
 			</VictoryChart>
 		</div>
 	);
