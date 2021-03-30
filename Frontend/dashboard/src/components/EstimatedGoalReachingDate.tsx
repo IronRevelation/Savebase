@@ -13,7 +13,7 @@ const EstimatedGoalReachingDate: React.FC<{
 			if (e.message === "GOALALREADYREACHED") {
 				message = "Hooray! You have already reached your goal!";
 			} else if (e.message === "NOTENOUGHITEMS") {
-				message = "Not enough data. Please add some money.";
+				message = "Not enough data. We need at least two days of data.";
 			}
 		}
 	} else {

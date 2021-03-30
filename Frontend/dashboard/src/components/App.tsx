@@ -56,14 +56,6 @@ if (window.money === "{{money}}") {
 			date: new Date("1, March 2021").toISOString(),
 			value: 1,
 		},
-		{
-			date: new Date("2, June 2021").toISOString(),
-			value: 2,
-		},
-		{
-			date: new Date("27, January 2022").toISOString(),
-			value: 3,
-		},
 	]);
 	window.quota = "10";
 	window.currency = "€";
@@ -118,7 +110,9 @@ function App() {
 							quota={quota}
 						/>
 					</RightHalfHeadWrapper>
-					<MoneyChart money={formattedMoney} />
+					{formattedMoney.length < 2 ? null : (
+						<MoneyChart money={formattedMoney} />
+					)}
 				</RightHalfOfScreenWrapper>
 			</ScreenWrapper>
 		</div>

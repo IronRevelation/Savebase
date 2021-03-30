@@ -46,7 +46,7 @@ const QuotaManager: React.FC<{
 	const err = isNaN(newQuota) || newQuota <= 0;
 
 	return (
-		<div>
+		<div style={{ padding: "1rem" }}>
 			<h3>Your goal:</h3>
 			<div>
 				{props.quota === 0 ? "You didn't set the goal." : props.quota}

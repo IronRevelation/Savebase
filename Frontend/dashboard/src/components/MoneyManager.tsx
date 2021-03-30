@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-// import MoneyComponent from "./MoneyComponent";
 import AddMoneyForm from "./AddMoneyForm";
 import { ErrSnackbar, SuccessSnackbar } from "./MySnackbars";
 import MoneyList from "./MoneyList";
@@ -61,7 +60,7 @@ const MoneyManager: React.FC<{
 		message: "",
 	});
 	return (
-		<div style={{ marginTop: "2rem" }}>
+		<div style={{ marginTop: "1rem", padding: "1rem" }}>
 			<h3>Your money:</h3>
 			<ErrSnackbar
 				openCfg={openErrSnackbar}

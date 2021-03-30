@@ -5,7 +5,11 @@ const MoneyChart: React.FC<{ money: { value: number; date: number }[] }> = (
 	props
 ) => {
 	return (
-		<div style={{ maxWidth: "40rem" }}>
+		<div
+			style={{
+				maxWidth: "40rem",
+			}}
+		>
 			<VictoryChart theme={VictoryTheme.material}>
 				<VictoryAxis
 					tickFormat={(x: string) => {
