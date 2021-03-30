@@ -50,6 +50,17 @@ window.htmlentities = {
 	},
 };
 
+window.money = JSON.stringify([
+	{
+		date: "2021-03-30",
+		value: 10,
+	},
+]);
+
+window.currency = "€";
+
+window.quota = "10";
+
 function accumulationOfMoney(
 	money: MoneyArray
 ): { value: number; date: number }[] {
@@ -76,7 +87,40 @@ function App() {
 	const formattedMoney = accumulationOfMoney(notAccumulatedSameDays);
 	return (
 		<div>
-			<h1>SaveBase</h1>
+			<div
+				style={{
+					display: "flex",
+					justifyContent: "space-between",
+					flexWrap: "wrap",
+				}}
+			>
+				<div style={{ flex: 1 }}>
+					<h1>SaveBase</h1>
+				</div>
+				<div
+					style={{
+						flex: 1,
+						display: "flex",
+						justifyContent: "flex-end",
+						alignItems: "center",
+					}}
+				>
+					<a
+						href="/logout"
+						style={{
+							display: "inline-block",
+							fontWeight: "bold",
+							padding: "1rem",
+							borderRadius: "0.5rem",
+							backgroundColor: "#009FB7",
+							textDecoration: "none",
+							color: "#EFF1F3",
+						}}
+					>
+						LOG OUT
+					</a>
+				</div>
+			</div>
 			<ScreenWrapper>
 				<LeftHalfOfScreenWrapper>
 					<UserSettings

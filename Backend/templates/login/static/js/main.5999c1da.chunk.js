@@ -1,2 +1,0 @@
-(this.webpackJsonplogin=this.webpackJsonplogin||[]).push([[0],{9:function(e,n,t){"use strict";t.r(n);t(1);var i=t(3),c=t.n(i),o=t(0);var r=function(){return Object(o.jsxs)("div",{children:[Object(o.jsx)("h1",{children:"CIAO!"}),Object(o.jsx)("a",{href:"/login",children:"Login with Google"})]})};c.a.render(Object(o.jsx)(r,{}),document.getElementById("root"))}},[[9,1,2]]]);
-//# sourceMappingURL=main.5999c1da.chunk.js.map

@@ -1,5 +1,6 @@
 import json
 from flask import Flask, render_template, request, redirect, jsonify, send_from_directory
+from flask.helpers import send_file
 from flask_login import (LoginManager, current_user, login_required, login_user, logout_user,)
 import os
 from dotenv import load_dotenv
@@ -51,6 +52,9 @@ def home():
 def dashboard():
     return render_template("dashboard/index.html", money=current_user.money, quota=current_user.quota, currency=current_user.currency)
 
+@app.route('/favicon.ico')
+def favicon():
+		return send_file("templates/login/favicon.ico")
 
 @app.route('/static/js/<path:path>')
 def serveStaticJS(path):
