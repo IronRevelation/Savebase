@@ -43,7 +43,7 @@ const QuotaManager: React.FC<{
 }> = (props) => {
 	const [newQuota, setNewQuota] = useState(NaN);
 
-	const err = isNaN(newQuota) || newQuota <= 0;
+	const err = isNaN(newQuota) || newQuota <= 0 || newQuota > 10000000;
 
 	return (
 		<div style={{ padding: "1rem" }}>
