@@ -42,6 +42,8 @@ class User(UserMixin):
 
 
     def add_money(self, m):
+        if len(users.find_one({'id':self.id})['money'])>10000:
+            return
         entry = {"date":datetime.datetime.now().isoformat(), "value":m}
         users.update_one({'id':self.id}, {'$push':{'money':entry}})
         self.money.append(entry)
