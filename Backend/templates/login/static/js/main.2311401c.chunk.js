@@ -1,2 +1,0 @@
-(this.webpackJsonplogin=this.webpackJsonplogin||[]).push([[0],{9:function(e,n,t){"use strict";t.r(n);t(1);var c=t(3),o=t.n(c),s=t(0);var i=function(){return Object(s.jsxs)("div",{children:[Object(s.jsx)("h1",{children:"SaveBase"}),Object(s.jsx)("h3",{children:"The coolest way to track your savings."}),Object(s.jsx)("a",{href:"/login",children:"Login with Google"})]})};o.a.render(Object(s.jsx)(i,{}),document.getElementById("root"))}},[[9,1,2]]]);
-//# sourceMappingURL=main.2311401c.chunk.js.map
