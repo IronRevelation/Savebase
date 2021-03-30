@@ -1,2 +1,13 @@
 # SaveBase
+![Platforms](https://raster.shields.io/badge/Platform-Web%20Browser-blue.png) ![GitHub repo size](https://img.shields.io/github/repo-size/IronRevelation/Savebase) [![Link](https://img.shields.io/badge/Link-https://google.com)](https://google.com)
 ## The coolest way to track your savings
+With savebase, you can track your savings with ease!
+## Features
+- Tracking: you can track how much money you save
+- Estimate: you can see approximately how much time is left until reaching your goal
+
+## Note
+For the estimation, at least 2 days of data are needed
+
+## Disclamer
+We don't save any of your personal data. We use an hash of your google id to authenticate you
