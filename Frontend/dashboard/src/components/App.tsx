@@ -50,17 +50,6 @@ window.htmlentities = {
 	},
 };
 
-window.money = JSON.stringify([
-	{
-		date: "2021-03-30",
-		value: 10,
-	},
-]);
-
-window.currency = "€";
-
-window.quota = "10";
-
 function accumulationOfMoney(
 	money: MoneyArray
 ): { value: number; date: number }[] {
