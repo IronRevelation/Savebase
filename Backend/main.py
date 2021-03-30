@@ -4,10 +4,8 @@ from flask_login import (LoginManager, current_user, login_required, login_user,
 import os
 from dotenv import load_dotenv
 from user import User
-
 from oauthlib.oauth2 import WebApplicationClient
 import requests
-
 
 
 app = Flask(__name__)
@@ -51,17 +49,17 @@ def home():
 @app.route('/dashboard')
 @login_required
 def dashboard():
-	return render_template("dashboard/index.html", money=current_user.money, quota=current_user.quota, currency=current_user.currency)
+    return render_template("dashboard/index.html", money=current_user.money, quota=current_user.quota, currency=current_user.currency)
 
 
 @app.route('/static/js/<path:path>')
 def serveStaticJS(path):
-	return send_from_directory("templates/login/static/js", path)
+    return send_from_directory("templates/login/static/js", path)
 
 
 @app.route("/dashboard/static/js/<path:path>")
 def serveStaticDashboardJS(path):
-	return send_from_directory("templates/dashboard/static/js", path)
+    return send_from_directory("templates/dashboard/static/js", path)
 
 
 @app.route("/login")
