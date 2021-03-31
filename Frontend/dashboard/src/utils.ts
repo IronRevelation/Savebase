@@ -70,12 +70,12 @@ export const dateSinceNowOfETA = (
 	sameDaysNotAccumulated: { date: string; value: number }[],
 	goal: number
 ) => {
-	if (sameDaysNotAccumulated.length < 2) throw new Error("NOTENOUGHITEMS");
 	const totalMoney = sameDaysNotAccumulated.reduce(
 		(prev, cur) => prev + cur.value,
 		0
 	);
 	if (totalMoney >= goal) throw new Error("GOALALREADYREACHED");
+	if (sameDaysNotAccumulated.length < 2) throw new Error("NOTENOUGHITEMS");
 	const lastOperationDate =
 		sameDaysNotAccumulated[sameDaysNotAccumulated.length - 1].date;
 	const daysSinceLastOperation = Math.floor(
