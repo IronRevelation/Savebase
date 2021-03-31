@@ -72,6 +72,7 @@ function App() {
 	const [money, setMoney] = useState(defaultMoney);
 	const [currency, setCurrency] = useState(window.currency);
 	const [quota, setQuota] = useState(parseFloat(window.quota));
+	const accumulatedDifferentData = accumulationOfMoney(money);
 	const notAccumulatedSameDays = onlySameDays(money);
 	const formattedMoney = accumulationOfMoney(notAccumulatedSameDays);
 	return (
@@ -132,8 +133,8 @@ function App() {
 							quota={quota}
 						/>
 					</RightHalfHeadWrapper>
-					{formattedMoney.length < 2 ? null : (
-						<MoneyChart money={formattedMoney} />
+					{accumulatedDifferentData.length < 2 ? null : (
+						<MoneyChart money={accumulatedDifferentData} />
 					)}
 				</RightHalfOfScreenWrapper>
 			</ScreenWrapper>
