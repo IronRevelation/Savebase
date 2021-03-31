@@ -163,7 +163,8 @@ def update_quota(q):
 def get_quota():
     return jsonify(current_user.quota)
 
+PORT = os.environ.get("PORT", 5000)
 
 if __name__ == '__main__':
-    app.run(ssl_context="adhoc")
+    app.run(ssl_context="adhoc", port=PORT)
 

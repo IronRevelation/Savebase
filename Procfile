@@ -1,1 +1,1 @@
-web: gunicorn --bind 0.0.0.0:$PORT --chdir Backend/ main:app
+web: gunicorn -w 1 --chdir Backend/ main:app --preload
