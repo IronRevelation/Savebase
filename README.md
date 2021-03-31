@@ -1,5 +1,5 @@
 # SaveBase
-![Platforms](https://raster.shields.io/badge/Platform-Web%20Browser-blue.png) ![GitHub repo size](https://img.shields.io/github/repo-size/IronRevelation/Savebase) [![Link](https://img.shields.io/static/v1?label=Link&message=https://google.com&color=blue)](https://google.com)
+![Platforms](https://raster.shields.io/badge/Platform-Web%20Browser-blue.png) ![GitHub repo size](https://img.shields.io/github/repo-size/IronRevelation/Savebase) [![Link](https://img.shields.io/static/v1?label=Link&message=https://savebase.herokuapp.com/&color=blue)](https://savebase.herokuapp.com/)
 ## The coolest way to track your savings
 With savebase, you can track your savings with ease!
 ## Features
