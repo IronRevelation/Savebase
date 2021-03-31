@@ -112,7 +112,6 @@ def logout():
 @app.route("/api/add_money/<float:m>", methods=["POST"])
 @login_required
 def add_money(m):
-    print(f"\n\n\n\n\n\n\nADDED SOME MONEY! {m}\n\n\n\n\n\n\n\n")
     current_user.add_money(m)
     return jsonify(current_user.money)
 
