@@ -41,6 +41,7 @@ def load_user(user_id):
 
 @app.route('/')
 def home():
+    print(f"IS AUTHENTICATED? {current_user.is_authenticated}")
     if current_user.is_authenticated:
         return redirect("/dashboard")
     else:
