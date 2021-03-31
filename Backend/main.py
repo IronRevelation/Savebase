@@ -68,6 +68,8 @@ def serveStaticDashboardJS(path):
 
 @app.route("/login")
 def login():
+    if(current_user.is_authenticated):
+        return redirect("/dashboard")
     google_provider_cfg = get_google_provider_cfg()
     authorization_endpoint = google_provider_cfg["authorization_endpoint"]
     request_uri = client.prepare_request_uri(
